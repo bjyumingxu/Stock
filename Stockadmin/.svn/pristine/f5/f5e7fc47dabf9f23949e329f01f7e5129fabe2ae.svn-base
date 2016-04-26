@@ -1,0 +1,18 @@
+package com.isoft.project.module.dao;
+
+import org.springframework.stereotype.Repository;
+
+import com.isoft.project.module.po.OsrStaff;
+
+/**
+ * @ProjectName:MVCProject
+ * @Description: 
+ * @Copyright: Copyright (c) 2016
+ * @Company:天津市融创软通科技有限公司
+ * @author: 周楠
+ * @date 2016年4月17日 下午3:06:54
+ */
+@Repository
+public class OsrStaffDao extends  Hibernate4BaseDao<OsrStaff> {
+
+}

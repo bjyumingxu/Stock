@@ -1,0 +1,89 @@
+package com.isoft.project.module.po;
+
+import java.util.List;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.OneToMany;
+
+import static javax.persistence.GenerationType.IDENTITY;
+
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+/**
+ * Stockinfo entity. @author MyEclipse Persistence Tools
+ */
+@Entity
+@Table(name = "stockinfo", catalog = "test")
+public class Stockinfo implements java.io.Serializable {
+
+	// Fields
+
+	private Integer stockinfoId;
+	private String stockinfoGid;
+	private String stockinfoName;
+	
+	
+//	private  List<Stockdata> stockdatas; 
+
+	// Constructors
+
+	/** default constructor */
+	public Stockinfo() {
+	}
+
+	/** full constructor */
+	public Stockinfo(String stockinfoGid, String stockinfoName) {
+		this.stockinfoGid = stockinfoGid;
+		this.stockinfoName = stockinfoName;
+	}
+
+	// Property accessors
+	@Id
+	@GeneratedValue(strategy = IDENTITY)
+	@Column(name = "stockinfo_id", unique = true, nullable = false)
+	public Integer getStockinfoId() {
+		return this.stockinfoId;
+	}
+
+	public void setStockinfoId(Integer stockinfoId) {
+		this.stockinfoId = stockinfoId;
+	}
+
+	@Column(name = "stockinfo_gid", length = 64)
+	public String getStockinfoGid() {
+		return this.stockinfoGid;
+	}
+
+	public void setStockinfoGid(String stockinfoGid) {
+		this.stockinfoGid = stockinfoGid;
+	}
+
+	@Column(name = "stockinfo_name", length = 64)
+	public String getStockinfoName() {
+		return this.stockinfoName;
+	}
+
+	public void setStockinfoName(String stockinfoName) {
+		this.stockinfoName = stockinfoName;
+	}
+
+//	@OneToMany(mappedBy="stockinfo",fetch=FetchType.EAGER)
+//	public List<Stockdata> getStockdatas() {
+//		return stockdatas;
+//	}
+//
+//	public void setStockdatas(List<Stockdata> stockdatas) {
+//		this.stockdatas = stockdatas;
+//	}
+
+	
+	
+	
+	
+}

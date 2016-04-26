@@ -1,0 +1,40 @@
+package com.isoft.project.module.dao;
+
+import java.util.List;
+
+import org.hibernate.Session;
+import org.springframework.stereotype.Repository;
+
+import com.isoft.project.module.po.Stockdata;
+
+/**
+ * @ProjectName:MVCProject
+ * @Description: 
+ * @Copyright: Copyright (c) 2016
+ * @Company:天津市融创软通科技有限公司
+ * @author: 周楠
+ * @date 2016年4月19日 上午9:36:44
+ */
+@Repository
+public class StockdataDao  extends Hibernate4BaseDao<Stockdata>{
+
+	
+	
+	public List<Stockdata> findbyStockinfoId(Integer id){
+		
+		
+		Session session= openSession();
+		
+		List<Stockdata> list= session.createQuery("from Stockdata where stockinfoId=?").setInteger(0, id).list();
+		
+		session.close();
+		
+		return list;
+		
+		
+		
+	}
+	
+	
+	
+}

@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context" 
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc
+http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd
+http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+http://www.springframework.org/schema/tx 
+http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+http://www.springframework.org/schema/context
+http://www.springframework.org/schema/context/spring-context-3.0.xsd
+http://www.springframework.org/schema/aop 
+http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+">
+
+ 
+<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">  
+          <!-- 用户名-->  
+          <property name="user" value="root"/>  
+          <!-- 用户密码-->  
+          <property name="password" value="root"/>  
+          <property name="driverClass" value="com.mysql.jdbc.Driver"/>  
+          <property name="jdbcUrl" value="jdbc:mysql://127.0.0.1:3306/test?characterEncoding=utf-8"/>  
+           <!--连接池中保留的最大连接数。默认值: 15 -->   
+          <property name="maxPoolSize" value="30"/>  
+          <!-- 连接池中保留的最小连接数，默认为：3-->  
+          <property name="minPoolSize" value="10"/>  
+          
+     </bean> 
+
+	
+<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+		<property name="dataSource">
+			<ref bean="dataSource" />
+		</property>
+		<property name="packagesToScan">
+            <list>
+                <value>com.isoft.project.module.po</value>
+            </list>
+        </property>
+		<property name="hibernateProperties">
+            <props>
+                <prop key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</prop>
+                <prop key="hibernate.format_sql">true</prop>
+                <prop key="hibernate.show_sql">true</prop>
+            </props>
+        </property>
+	</bean>
+	
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<tx:annotation-driven transaction-manager="transactionManager" />
+
+	<!-- 拦截器方式配置事物 -->
+	<tx:advice id="transactionAdvice" transaction-manager="transactionManager">
+		<tx:attributes>
+			<tx:method name="add*" propagation="REQUIRED" />
+			<tx:method name="save*" propagation="REQUIRED" />
+			<tx:method name="insert*" propagation="REQUIRED" />
+			<tx:method name="edit*" propagation="REQUIRED" />
+			<tx:method name="update*" propagation="REQUIRED" />
+			<tx:method name="modify*" propagation="REQUIRED" />
+			<tx:method name="repair" propagation="REQUIRED" />
+			<tx:method name="append*" propagation="REQUIRED" />
+			<tx:method name="delete*" propagation="REQUIRED" />
+			<tx:method name="remove*" propagation="REQUIRED" />	
+			<tx:method name="get*" propagation="SUPPORTS" />
+			<tx:method name="load*" propagation="SUPPORTS" />
+			<tx:method name="datagrid*" propagation="SUPPORTS" />
+			<tx:method name="*" propagation="SUPPORTS" />
+		</tx:attributes>
+	</tx:advice>
+
+	<aop:config>
+		<aop:pointcut id="transactionPointcut"
+			expression="execution(* com.isoft.*.*.Service..*Service.*(..))" />
+		<aop:advisor pointcut-ref="transactionPointcut"
+			advice-ref="transactionAdvice" />
+	</aop:config>
+	
+	
+	<!-- 定时事务 -->
+    <!-- 大盘同步                                                -->
+	<bean id="methodInvokingJobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean"> 
+	       <property name="targetObject"><ref bean="StockIndexSevice"/></property>
+	        <property name="targetMethod"><value>synStockDataDaPan</value></property>	       
+	</bean>
+	
+    <bean id="StockIndextaskTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+            <property name="jobDetail"><ref bean="methodInvokingJobDetail"/></property>        
+            <property name="cronExpression"><value>0 0/5 18,19 * * ?</value></property>    
+    </bean>
+    
+    <!-- 个股抓取                                                   -->
+    
+    <bean id="methodInvokingJobDetail2" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean"> 
+	       <property name="targetObject"><ref bean="StockdataService"/></property>
+	        <property name="targetMethod"><value>synStockData</value></property>	       
+	</bean>
+	
+    <bean id="StockdatataskTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+            <property name="jobDetail"><ref bean="methodInvokingJobDetail2"/></property>        
+            <property name="cronExpression"><value>0 0/5 18,19 * * ?</value></property>    
+    </bean>
+    
+     <!-- 个股列表同步                                            -->
+    
+    <bean id="methodInvokingJobDetail3" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean"> 
+	       <property name="targetObject"><ref bean="StockdataService"/></property>
+	        <property name="targetMethod"><value>getdataStockinfolist</value></property>	       
+	</bean>
+	
+    <bean id="StockdatatListaskTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+            <property name="jobDetail"><ref bean="methodInvokingJobDetail3"/></property>        
+            <property name="cronExpression"><value>0 0 8,9 * * ?</value></property>    
+    </bean>
+    
+    
+    <!--0 */1 * * * ?  每分钟执行  -->
+    <!--0 30 4 * * ?  每天四点半执行 -->
+    
+    <!-- 0 0/5 9,10,11 * * ?   9点到  11点59 每5分钟一次 --> 
+    
+    <bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+            <property name="triggers">
+                  <list>
+                  <ref local="StockIndextaskTrigger"/>
+                  <ref local="StockdatataskTrigger"/>
+                  <ref local="StockdatatListaskTrigger"/>
+                  </list>        
+            </property>    
+    </bean>
+	
+
+</beans>

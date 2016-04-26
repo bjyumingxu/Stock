@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>xtkz.html</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="keywords" content="keyword1,keyword2,keyword3">
+    <meta name="description" content="this is my page">
+    <meta name="content-type" content="text/html; charset=UTF-8">
+    
+    <!--<link rel="stylesheet" type="text/css" href="./styles.css">-->
+
+  </head>
+  
+  <body>
+  
+  
+    
+    <td><input type="button" onClick="clickeinfo()" value="股盘刷新"/></td>
+    <td><input type="button" onClick="clickegrad()" value="选择股抓取"/></td>
+    <td><input type="button" onClick="clickestart()" value="股票信息更新启动"/></td>
+     <td><input type="button" onClick="clickedpstart()" value="大盘更新启动"/></td>
+    
+   
+  </body>
+   <script type="text/javascript" src="http://cdn.hcharts.cn/jquery/jquery-1.8.3.min.js"></script>
+  <script type="text/javascript" src="http://cdn.hcharts.cn/highcharts/highcharts.js"></script>
+  <script type="text/javascript" src="http://cdn.hcharts.cn/highcharts/exporting.js"></script>
+  
+  <script>
+      function clickeinfo(){
+      //alert(1111);
+         $.ajax({ url: "StockInfo/synStocklist.do",
+		 type:"post",
+		 dataType : "json",
+		 });
+     }
+     function clickegrad(){
+          $.ajax({ url: "Stockdata/exeStockinfolist.do",
+		 type:"post",
+		 dataType : "json",
+		 });
+     }
+     function clickestart(){
+         $.ajax({ url: "Stockdata/synStockData.do",
+		 type:"post",
+		 dataType : "json",
+		 });
+     }
+     function clickedpstart(){
+         $.ajax({ url: "Stockdata/synStockDaPanData.do",
+		 type:"post",
+		
+		 dataType : "json",
+		 });
+     }
+   </script>
+</html>

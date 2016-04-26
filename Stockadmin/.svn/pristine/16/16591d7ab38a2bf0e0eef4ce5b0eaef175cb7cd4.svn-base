@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>MyHtml.html</title>
+	
+    <meta name="keywords" content="keyword1,keyword2,keyword3">
+    <meta name="description" content="this is my page">
+    <meta name="content-type" content="text/html; charset=GBK">
+    
+    <!--<link rel="stylesheet" type="text/css" href="./styles.css">-->
+  
+  
+   <link href="easyui-1.4.4/themes/default/easyui.css" rel="stylesheet" type="text/css" />
+    <link href="easyui-1.4.4/themes/icon.css" rel="stylesheet" type="text/css" /> 
+    
+ <script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
+ <script type="text/javascript" src="easyui-1.4.4/jquery.easyui.min.js"></script>
+  </head>
+  
+<body class="easyui-layout">
+    <div region="north" border="true" split="true" style="overflow: hidden; height: 80px;">
+        <div class="top-bg"></div>
+    </div>
+    <div region="south" border="true" split="true" style="overflow: hidden; height: 40px;">
+        <div class="footer">版权所有：<a href="#">isoft</a></div>
+    </div>
+    <div region="west" split="true" title="导航菜单" style="width: 200px;">
+
+        <div id="aa" class="easyui-accordion" style="position: absolute; top: 27px; left: 0px; right: 0px; bottom: 0px;">
+
+            <div title="博文管理" iconcls="icon-save" style="overflow: auto; padding: 10px;">
+                
+            </div>
+            <div title="新闻管理" iconcls="icon-reload" selected="true" style="padding: 10px;">
+                content2 
+            </div>
+            <div title="资源管理">
+                content3 
+            </div>
+        </div>
+    
+    </div>
+    <div id="mainPanle" region="center" style="overflow: hidden;">
+      
+      <button onclick="selectrow()">选择行</button>
+       <table id="datatable" class="easyui-datagrid" style="height:95%">
+       </table>
+    
+    </div>
+</body>
+
+<script type="text/javascript">
+$(function($) {
+	
+	$('#datatable').datagrid({
+				//fit:true,
+				url: 'staff/findallstaff.do',
+				fitColumns:true, //下面滚动条
+				nowrap:false, //显示单个单元格全显示
+				border:false, //边框
+				idField:'staffId', //分页记住所勾选的
+				fitColumns:true,
+				pagination:true,
+				singleSelect:true,//是否单选 
+	 	        pageSize: 15,//每页显示的记录条数，默认为10 
+		        pageList: [5,10,15,20,30],//可以设置每页记录条数的列表 
+	 	        rownumbers:true,//行号 
+				columns:[[//多级表头 列数
+				          {field: 'staffId', checkbox: true},
+						  {title:'员工编号',field:'staffNumber',width:60},	 
+							{title:'员工姓名',field:'staffName',width:60},
+							{title:'员工姓别',field:'staffGender',width:60},
+							{title:'员工电话',field:'staffPhone',width:60},
+							{title:'员工邮箱',field:'staffEmail',width:60},
+						]]
+			});
+	
+	
+});
+
+
+function selectrow(){
+	
+	
+  var row=$('#datatable').datagrid('getSelected');
+  
+  alert(row.staffName);
+  
+  alert(row.staffId);
+	
+}
+
+
+
+</script>
+
+</html>

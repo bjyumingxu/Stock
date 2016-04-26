@@ -1,0 +1,152 @@
+package com.isoft.project.module.service;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.isoft.project.module.dao.StockInfoDao;
+import com.isoft.project.module.dao.StockdataDao;
+import com.isoft.project.module.po.Stockdata;
+import com.isoft.project.module.po.Stockinfo;
+import com.isoft.stock.stockutils.JuheDataToBean;
+import com.isoft.stock.stockutils.JuheStockData;
+
+
+@Service
+public class StockInfoService {
+	
+	@Autowired
+	private StockInfoDao sidao;
+	
+	@Autowired
+	private StockdataDao sddao;
+	
+	
+	
+	
+	public List<Stockinfo>  getall(){
+		
+		return sidao.findAll();
+	}
+	
+	public Map<String,Object> getStockinfobyid(String id){
+		
+		
+		Stockinfo si=  	sidao.findById(Integer.valueOf(id));
+		
+		 
+		 List<Stockdata> sdlist=sddao.findbyStockinfoId(Integer.valueOf(id));
+		 
+		 Map<String, Object> map=new HashMap<String, Object>();
+		 
+		 map.put("Stockinfo", si);
+		 map.put("Stockdata", sdlist);
+		 
+		 
+		 return map;
+		
+	}
+	
+	
+	/**
+	 * 清空 并同步新的数据
+	 * @MethodName:synStockInfo
+	 * @author: 姓名
+	 * @date 2016年4月20日 下午2:33:36
+	 */
+	public String synStockInfo(){
+		
+		String message="";
+		
+		sidao.clearStockInfoByMysql();
+		
+		try {
+			
+			synSZStockList(25);
+		} catch (Exception e) {
+		
+			e.printStackTrace();
+			
+			message+="深市同步中发生异常";
+			
+		}
+		
+
+		try {
+			
+			synSHStockList(25);
+		} catch (Exception e) {
+		
+			message+="沪市同步中发生异常";
+			
+		}
+		
+		
+		return message;
+		
+	}
+	
+    /**
+     *  同步深市数据
+     * @MethodName:synSZStockList
+     * @author: 姓名
+     * @date 2016年4月20日 下午2:32:19
+     * @param page
+     */
+	public  void synSZStockList(Integer page){
+		
+		if(page!=null){
+		for (int i = 0; i < page; i++) {
+			
+		
+		
+		JSONObject  SZSlist=	(JSONObject) JuheStockData.getSZStockData(i);
+		
+		
+		if(SZSlist.get("error_code")==null||SZSlist.get("error_code").equals("0")){
+			List  SZSobjlist= JuheDataToBean.ToStockInfo(SZSlist, Stockinfo.class);
+			sidao.batchsave(SZSobjlist);
+			
+		}
+		
+	
+		}}
+	}
+	
+	
+	/**
+	 * 同步乎市数据
+	 * @MethodName:synSHStockList
+	 * @author: 姓名
+	 * @date 2016年4月20日 下午2:32:39
+	 * @param page
+	 */
+     public  void synSHStockList(Integer page){
+		
+		if(page!=null){
+		for (int i = 0; i < page; i++) {
+			
+		
+		JSONObject  SHSlist=	 (JSONObject) JuheStockData.getSHStockData(i);
+	
+		if(SHSlist.get("error_code")==null||SHSlist.get("error_code").equals("0")){
+			List  SHSobjlist= JuheDataToBean.ToStockInfo(SHSlist, Stockinfo.class);
+			sidao.batchsave(SHSobjlist);
+		}
+		  
+	
+		}}
+	}
+
+	
+	
+	
+	
+	
+}

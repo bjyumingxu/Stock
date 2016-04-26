@@ -1,0 +1,263 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>王炸股票系统</title>
+<link rel="stylesheet" href="css/common.css"/>
+<script src="http://www.5imoban.net/download/jquery/jquery-1.8.3.min.js"></script>
+<style>#wimoban_p,#wimoban_p a{color:#fff; font-family:"微软雅黑";}
+#wimoban_p{text-align:center; font-size:14px; clear:both;}
+</style>
+</head>	
+<body oncontextmenu='return false' ondragstart='return false'>
+<div id="wrapper">
+	<div class="skinBg" style="background-image: url('images/3.jpg');"></div>
+	<header id="header">
+		<div class="weather fl">
+			<span class="cityW">
+		
+				<span>
+					<span class="weatherIcon wI1"></span>
+				
+				</span>
+			</span>
+	
+			<span class="pollution">
+				<a href ="person.html"><span>返回个人中心</span></a>
+			
+			</span>
+			<div class="cityWeather">
+				
+			</div>
+		</div>
+	<!-- 	<nav class="headNavs fr tr">
+			<a href="#"><span class="s-icon s-icon-treasure"></span><span>宝箱</span></a>
+			<a href="#"><span class="s-icon s-icon-skin"></span><span>换肤</span></a>
+			<a href="#"><span class="s-icon s-icon-msg"></span><span>消息</span></a>
+			<a><span class="s-icon s-icon-line"></span></a>
+			<a href="#"><span>设为首页</span></a>
+			<a href="javascript:;" class="uname"><span>模板网</span><span class="user-arrow"></span></a>
+			<div class="topMenus dn">
+				<span class="arrowTop"></span>
+				<a href="#">个人中心</a>
+				<a href="#">帐号设置</a>
+				<a href="#">搜索设置</a>
+				<a href="#">意见反馈</a>
+				<a href="#">首页教程</a>
+				<a href="#">安全退出</a>
+			</div>
+		</nav> -->
+	</header>
+	<div class="content tc">
+		<p class="logo"><img width="270" height="129" src="images/logocx.png" alt="logo" /></p>
+	
+		<div class="searchBox">
+			<form action="">
+				<input id="cxkey" type="text" class="searchIpt f14" name="wd" maxlength="100" autocomplete="off"/>
+				<input id= "cx1" onclick="aaa()" type="button" class="btn cp" value="精准搜索" />
+			</form>
+		</div>
+		<div class="mainContents oh">
+			<div class="menusWrapper fl">
+				
+				<a class="active" href="javascript:;">新闻</a>
+				
+			</div>
+			<div class="ctnerWrapper">
+				<div class="ctnerBox">
+					<!-- <div id="cbox-1" class="cbox tl dn">
+						<div class="ctnerTab pr tc">
+							<a href="#">我的导航</a> <a href="#" class="on">推荐导航</a>
+						</div>
+						<div class="myNavs rtNavs dn pt15">
+							<div class="navTitle fl">我的导航</div>
+							<div class="navArea oh">
+								<a href="#" target="_blank" title="淘宝网"><img width="115" height="70" src="images/101.png" alt="" /></a>
+							</div>
+						</div>
+						<div class="hotNavs rtNavs dn oh pt15">
+							<div class="navTitle fl">热门网址</div>
+							<div class="navArea oh">
+								<a href="#" target="_blank" title="淘宝网"><img width="115" height="70" src="images/101.png" alt="" /></a>
+								<a href="#" target="_blank" title="京东商城"><img width="115" height="70" src="images/102.png" alt="" /></a>
+								<a href="#" target="_blank" title="铁路客户服务中心"><img width="115" height="70" src="images/103.png" alt="" /></a>
+								<a href="#" target="_blank" title="4399小游戏"><img width="115" height="70" src="images/104.png" alt="" /></a>
+								<a href="#" target="_blank" title="淘宝网"><img width="115" height="70" src="images/20.png" alt="" /></a>
+								<a href="#" target="_blank" title="京东商城"><img width="115" height="70" src="images/106.png" alt="" /></a>
+								<a href="#" target="_blank" title="铁路客户服务中心"><img width="115" height="70" src="images/107.png" alt="" /></a>
+								<a href="#" target="_blank" title="4399小游戏"><img width="115" height="70" src="images/108.png" alt="" /></a>
+								<a href="#" target="_blank" title="淘宝网"><img width="115" height="70" src="images/109.png" alt="" /></a>
+								<a href="#" target="_blank" title="京东商城"><img width="115" height="70" src="images/110.png" alt="" /></a>
+								<a href="#" target="_blank" title="铁路客户服务中心"><img width="115" height="70" src="images/111.png" alt="" /></a>
+								<a href="#" target="_blank" title="4399小游戏"><img width="115" height="70" src="images/112.png" alt="" /></a>
+								<a href="#" target="_blank" title="淘宝网"><img width="115" height="70" src="images/113.png" alt="" /></a>
+								<a href="#" target="_blank" title="京东商城"><img width="115" height="70" src="images/114.png" alt="" /></a>
+								<a href="#" target="_blank" title="铁路客户服务中心"><img width="115" height="70" src="images/115.png" alt="" /></a>
+								<a href="#" target="_blank" title="4399小游戏"><img width="115" height="70" src="images/116.png" alt="" /></a>
+								<a href="#" target="_blank" title="铁路客户服务中心"><img width="115" height="70" src="images/12.png" alt="" /></a>
+								<a href="#" target="_blank" title="4399小游戏"><img width="115" height="70" src="images/117.png" alt="" /></a>
+							</div>
+						</div>
+					</div> -->
+					<div id="cbox-1" class="cbox tl dn">
+						<div class="newsBox oh">
+							<div class="sliderBox fl">
+								<div class="slider">
+									<a href="news-index.html" target="_blank" class="picLink active">
+										<img width="425" height="260" src="images/news1.jpg" alt="" />
+										<span href="news-index.html" target="_blank" class="picTitle">百亿主力资金近三日将撤出中小创</span>
+									</a>
+									<a href="news-xjq.html" target="_blank" class="picLink">
+										<img width="425" height="260" src="images/news2.jpg" alt="" />
+										<span href="news-xjq.html" target="_blank" class="picTitle">如今股市中实用的三个小技巧</span>
+									</a>
+									<a href="news-zc.html" target="_blank" class="picLink">
+										<img width="425" height="260" src="images/news3.jpg" alt="" />
+										<span href="news-zc.html" target="_blank" class="picTitle">政策市玩出新花样</span>
+									</a>
+									<a href="#" target="_blank" class="picLink">
+										<img width="425" height="260" src="images/news4.jpg" alt="" />
+										<span href="#" target="_blank" class="picTitle">想一夜暴富？来看看</span>
+									</a>
+									<a href="news-lzxgttd.html" target="_blank" class="picLink">
+										<img width="425" height="260" src="images/news5.jpg" alt="" />
+										<span href="news-lzxgttd.html" target="_blank" class="picTitle">六只新股天天打</span>
+									</a>
+								</div>
+								<div class="smallPics">
+									<a class="active"><img width="68" height="40" src="images/news1.jpg" alt="" /></a>
+									<a><img width="68" height="40" src="images/news2.jpg" alt="" /></a>
+									<a><img width="68" height="40" src="images/news3.jpg" alt="" /></a>
+									<a><img width="68" height="40" src="images/news4.jpg" alt="" /></a>
+									<a><img width="68" height="40" src="images/news5.jpg" alt="" /></a>
+								</div>
+							</div>
+							<div class="topic">
+								<div class="topicTop">
+									<span class="titleWords titleT on"><a href="javascript:;">新闻风云榜</a></span>
+									<span class="titleTopic titleT"><a href="javascript:;">热门股票</a></span>
+									
+								</div>
+								<div class="topicList">
+									<div class="wBox topicB dn">
+										<ul>
+											<li><a target="_blank" href="#">欧美股市涨跌不一</a></li>
+											<li><a target="_blank" href="#">上交所监管措施</a></li>
+											<li><a target="_blank" href="#">大盘持续超买 逢回调加仓</a></li>
+											<li><a target="_blank" href="#"> 三类股现买入信号</a></li>
+											<li><a target="_blank" href="#">2000点保卫战打响</a></li>
+											<li><a target="_blank" href="#">周二A股如何演绎</a></li>
+											<li><a target="_blank" href="#">尾盘缘何突然杀跌</a></li>
+											<li><a target="_blank" href="#"> 逆向布局三类股(附股)</a></li>
+											<li><a target="_blank" href="#">金融股助力大盘上涨</a></li>
+											<li><a target="_blank" href="#">大盘缩量阴跌何时休 </a></li>
+											<li><a target="_blank" href="#">三大股指全线低开</a></li>
+											<li><a target="_blank" href="#">资源股表现抢眼</a></li>
+											<li><a target="_blank" href="#">携程拟以30亿元入股东航</a></li>
+											<li><a target="_blank" href="#">A股和中国经济未来</a></li>
+											<li><a target="_blank" href="#">券商保险板块领跌</a></li>
+											<li><a target="_blank" href="#">A股浮现三大跳水后遗症</a></li>
+										</ul>
+									</div>
+									<div class="tBox topicB dn">
+										<ul>
+											<li><a target="_blank" href="#">农产品[600061]</a></li>
+											<li><a target="_blank" href="#">深圳华强[600062]</a></li>
+											<li><a target="_blank" href="#">特发信息[600070]</a></li>
+											<li><a target="_blank" href="#">海王生物[600078]</a></li>
+											<li><a target="_blank" href="#">盐田港[600088]</a></li>
+											<li><a target="_blank" href="#">深圳机场[600089]</a></li>
+											<li><a target="_blank" href="#">天建集团[600090]</a></li>
+											<li><a target="_blank" href="#">宜华健康[600150]</a></li>
+											<li><a target="_blank" href="#">中成股份[600151]</a></li>
+											<li><a target="_blank" href="#">丰原药业[600153]</a></li>
+											<li><a target="_blank" href="#">东方通信 [600776]</a></li>
+											<li><a target="_blank" href="#">浙报传媒 [600633]</a></li>
+											<li><a target="_blank" href="#">中青宝 [300052]</a></li>
+											<li><a target="_blank" href="#">大唐电信[600198]</a></li>
+											<li><a target="_blank" href="#">双良节能 [600481]</a></li>
+											<li><a target="_blank" href="#">锦江股份 [600754]</a></li>
+										</ul>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				<!-- 	<div id="cbox-3" class="cbox tl dn">
+						<p class="pt15 tc f14">4，其他这几个 这里就忽略掉了！意思意思算了...</p>
+					</div>
+					<div id="cbox-4" class="cbox tl dn">
+						<p class="pt15 tc f14">5，其他这几个这里就忽略掉了！意思意思算了...</p>
+					</div>
+					<div id="cbox-5" class="cbox tl dn">
+						<p class="pt15 tc f14">6，其他这几个这里就忽略掉了！意思意思算了...</p>
+					</div> -->
+				</div>
+			</div>
+		</div>
+	</div>
+	<footer id="footer" class="tc">©2016 wangzha TEAM</footer>
+</div>
+<script src="js/jquery.min.js"></script>
+<script src="js/jquery.autocomplete.min.js"></script>
+<script>
+	$('.uname,.topMenus').hover(function(){
+		$('.topMenus').stop(true,true).fadeIn(200);
+	},function(){
+		$('.topMenus').stop(true,true).delay(500).fadeOut(200);
+	});
+	
+	//搜索框自动补全; 
+	$('.searchIpt').AutoComplete({
+		'data': ['About Me', '审美网', 'abcdefg', 'One', 'Two', 'Three', 'Four', 'Five', 'Six','smwell.com', 'Seven', 'Eight', 'Nine', 'Ten', 'Eleven', 'Twelve'],
+		'itemHeight': 24,
+		'width': 529
+	}).AutoComplete('show');
+		
+	$('.ctnerTab a').click(function(){
+		if(!$(this).hasClass('on')){
+			$('.ctnerTab a').removeClass('on').eq($(this).index()).addClass('on');
+			$('.rtNavs').stop(true,true).hide(200).eq($(this).index()).show(300);
+		}
+	});
+	
+	$('.menusWrapper a').click(function(){
+		if(!$(this).hasClass('active')){
+			$('.menusWrapper a').removeClass('active').eq($(this).index()).addClass('active');
+			$('.cbox').stop(true,true).animate({top:318},100).hide().eq($(this).index()).animate({top:0},400).show();
+		}
+	});
+	
+	$('.smallPics a').click(function(){
+		if(!$(this).hasClass('active')){
+			$('.smallPics a').removeClass('active').eq($(this).index()).addClass('active');
+			$('.picLink').stop(true,true).removeClass('active').eq($(this).index()).addClass('active');
+		}
+	});
+			
+	$('.titleT').hover(function(){
+		if(!$(this).hasClass('on')){
+			$('.titleT').removeClass('on').eq($(this).index()).addClass('on');
+			$('.topicB').stop(true,true).hide().eq($(this).index()).show();
+		}
+	});
+	
+	
+	
+	function aaa(){
+		var cxkey = document.getElementById('cxkey').value;
+		//alert(cxkey);
+		window.location.href="xcr.html?cxkey="+cxkey;
+		
+	}
+	
+	
+	
+	
+	
+	
+</script>
+<!-- 代码结束 -->
+
+</body>
+</html>

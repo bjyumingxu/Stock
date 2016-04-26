@@ -1,0 +1,116 @@
+package com.isoft.project.module.po;
+
+import java.sql.Timestamp;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+import static javax.persistence.GenerationType.IDENTITY;
+
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+/**
+ * Stockdata entity. @author MyEclipse Persistence Tools
+ */
+@Entity
+@Table(name = "stockdata", catalog = "test")
+public class Stockdata implements java.io.Serializable {
+
+	// Fields
+
+	private Integer stockdataId;
+	
+	private Integer stockinfoId;
+	
+	private Stockinfo stockinfo;
+	
+	private Timestamp stockdataDate;
+	private Double stockdataNowPri;
+	private Double stockdataDot;
+
+	// Constructors
+
+	/** default constructor */
+	public Stockdata() {
+	}
+
+	/** full constructor */
+	public Stockdata(Timestamp stockdataDate,
+			Double stockdataNowPri, Double stockdataDot) {
+		
+		this.stockdataDate = stockdataDate;
+		this.stockdataNowPri = stockdataNowPri;
+		this.stockdataDot = stockdataDot;
+	}
+
+	// Property accessors
+	@Id
+	@GeneratedValue(strategy = IDENTITY)
+	@Column(name = "stockdata_id", unique = true, nullable = false)
+	public Integer getStockdataId() {
+		return this.stockdataId;
+	}
+
+	public void setStockdataId(Integer stockdataId) {
+		this.stockdataId = stockdataId;
+	}
+
+	@Column(name = "stockinfo_id")
+	public Integer getStockinfoId() {
+		return this.stockinfoId;
+	}
+
+	public void setStockinfoId(Integer stockinfoId) {
+		this.stockinfoId = stockinfoId;
+	}
+
+	@Column(name = "stockdata_date", length = 19)
+	public Timestamp getStockdataDate() {
+		return this.stockdataDate;
+	}
+
+	public void setStockdataDate(Timestamp stockdataDate) {
+		this.stockdataDate = stockdataDate;
+	}
+
+	@Column(name = "stockdata_nowPri", precision = 22, scale = 0)
+	public Double getStockdataNowPri() {
+		return this.stockdataNowPri;
+	}
+
+	public void setStockdataNowPri(Double stockdataNowPri) {
+		this.stockdataNowPri = stockdataNowPri;
+	}
+
+	@Column(name = "stockdata_dot", precision = 22, scale = 0)
+	public Double getStockdataDot() {
+		return this.stockdataDot;
+	}
+
+	public void setStockdataDot(Double stockdataDot) {
+		this.stockdataDot = stockdataDot;
+	}
+
+	
+//	@ManyToOne(fetch=FetchType.EAGER)
+//	@JoinColumn(name="stockinfo_id")
+//	@JsonIgnore
+//	public Stockinfo getStockinfo() {
+//		return stockinfo;
+//	}
+//
+//	public void setStockinfo(Stockinfo stockinfo) {
+//		this.stockinfo = stockinfo;
+//	}
+//	
+	
+	
+
+}

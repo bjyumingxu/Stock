@@ -1,0 +1,87 @@
+package com.isoft.project.module.po;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+import static javax.persistence.GenerationType.IDENTITY;
+
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+/**
+ * OsrStaffDepartment entity. @author MyEclipse Persistence Tools
+ */
+@Entity
+@Table(name = "osr_staff_department")
+public class OsrStaffDepartment implements java.io.Serializable {
+
+	// Fields
+
+	private String staffDepartmentId;
+	private OsrStaffDepartment departmentId;
+	private OsrStaff staffId;
+	
+	
+
+	// Constructors
+
+	/** default constructor */
+	public OsrStaffDepartment() {
+	}
+
+	/** full constructor */
+
+
+	// Property accessors
+	@Id
+	@GeneratedValue(strategy = IDENTITY)
+	@Column(name = "staff_department_id", unique = true, nullable = false, length = 32)
+	public String getStaffDepartmentId() {
+		return this.staffDepartmentId;
+	}
+
+	public void setStaffDepartmentId(String staffDepartmentId) {
+		this.staffDepartmentId = staffDepartmentId;
+	}
+
+	@ManyToOne(fetch=FetchType.EAGER)
+	@JoinColumn(name = "department_id")
+	@JsonIgnore
+	public OsrStaffDepartment getDepartmentId() {
+		return this.departmentId;
+	}
+
+	public void setDepartmentId(OsrStaffDepartment departmentId) {
+		this.departmentId = departmentId;
+	}
+	
+	@ManyToOne(fetch=FetchType.EAGER)
+	@JoinColumn(name="staff_id")
+	@JsonIgnore
+	public OsrStaff getStaffId() {
+		return staffId;
+	}
+
+	public void setStaffId(OsrStaff staffId) {
+		this.staffId = staffId;
+	}
+	
+	
+	
+
+//	@Column(name = "staff_id", length = 32)
+//	public String getStaffId() {
+//		return this.staffId;
+//	}
+//
+//	public void setStaffId(String staffId) {
+//		this.staffId = staffId;
+//	}
+
+}

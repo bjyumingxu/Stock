@@ -1,0 +1,130 @@
+package com.isoft.project.module.po;
+
+import java.util.List;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.OneToMany;
+
+import static javax.persistence.GenerationType.IDENTITY;
+
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+/**
+ * OsrDepartment entity. @author MyEclipse Persistence Tools
+ */
+@Entity
+@Table(name = "osr_department", catalog = "isoftoab")
+public class OsrDepartment implements java.io.Serializable {
+
+	// Fields
+
+	private String departmentId;
+	private String departmentName;
+	private String departmentDescribe;
+	private String departmentStaffNumber;
+	private String departmentHead;
+	private String departmentType;
+	private Boolean departmentStatus;
+	
+	private List<OsrStaffDepartment> deptstaff;
+
+	// Constructors
+
+	/** default constructor */
+	public OsrDepartment() {
+	}
+
+	/** full constructor */
+	public OsrDepartment(String departmentName, String departmentDescribe,
+			String departmentStaffNumber, String departmentHead,
+			String departmentType, Boolean departmentStatus) {
+		this.departmentName = departmentName;
+		this.departmentDescribe = departmentDescribe;
+		this.departmentStaffNumber = departmentStaffNumber;
+		this.departmentHead = departmentHead;
+		this.departmentType = departmentType;
+		this.departmentStatus = departmentStatus;
+	}
+
+	// Property accessors
+	@Id
+	@GeneratedValue(strategy = IDENTITY)
+	@Column(name = "department_id", unique = true, nullable = false, length = 32)
+	public String getDepartmentId() {
+		return this.departmentId;
+	}
+
+	public void setDepartmentId(String departmentId) {
+		this.departmentId = departmentId;
+	}
+
+	@Column(name = "department_name", length = 256)
+	public String getDepartmentName() {
+		return this.departmentName;
+	}
+
+	public void setDepartmentName(String departmentName) {
+		this.departmentName = departmentName;
+	}
+
+	@Column(name = "department_describe", length = 512)
+	public String getDepartmentDescribe() {
+		return this.departmentDescribe;
+	}
+
+	public void setDepartmentDescribe(String departmentDescribe) {
+		this.departmentDescribe = departmentDescribe;
+	}
+
+	@Column(name = "department_staff_number", length = 256)
+	public String getDepartmentStaffNumber() {
+		return this.departmentStaffNumber;
+	}
+
+	public void setDepartmentStaffNumber(String departmentStaffNumber) {
+		this.departmentStaffNumber = departmentStaffNumber;
+	}
+
+	@Column(name = "department_head", length = 256)
+	public String getDepartmentHead() {
+		return this.departmentHead;
+	}
+
+	public void setDepartmentHead(String departmentHead) {
+		this.departmentHead = departmentHead;
+	}
+
+	@Column(name = "department_type", length = 256)
+	public String getDepartmentType() {
+		return this.departmentType;
+	}
+
+	public void setDepartmentType(String departmentType) {
+		this.departmentType = departmentType;
+	}
+
+	@Column(name = "department_status")
+	public Boolean getDepartmentStatus() {
+		return this.departmentStatus;
+	}
+
+	public void setDepartmentStatus(Boolean departmentStatus) {
+		this.departmentStatus = departmentStatus;
+	}
+
+	@OneToMany(fetch=FetchType.EAGER,mappedBy="departmentId")
+	public List<OsrStaffDepartment> getDeptstaff() {
+		return deptstaff;
+	}
+
+	public void setDeptstaff(List<OsrStaffDepartment> deptstaff) {
+		this.deptstaff = deptstaff;
+	}
+
+	
+	
+}

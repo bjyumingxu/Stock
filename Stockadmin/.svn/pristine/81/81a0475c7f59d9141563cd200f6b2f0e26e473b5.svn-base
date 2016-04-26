@@ -1,0 +1,77 @@
+package com.isoft.project.module.po;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import static javax.persistence.GenerationType.IDENTITY;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+/**
+ * UserAccount entity. @author MyEclipse Persistence Tools
+ */
+@Entity
+@Table(name = "user_account", catalog = "test")
+public class UserAccount implements java.io.Serializable {
+
+	// Fields
+
+	private Integer userAccountId;
+	private String userAccountName;
+	private String userAccountIdPsw;
+	private String userAccountNickname;
+
+	// Constructors
+
+	/** default constructor */
+	public UserAccount() {
+	}
+
+	/** full constructor */
+	public UserAccount(String userAccountName, String userAccountIdPsw,
+			String userAccountNickname) {
+		this.userAccountName = userAccountName;
+		this.userAccountIdPsw = userAccountIdPsw;
+		this.userAccountNickname = userAccountNickname;
+	}
+
+	// Property accessors
+	@Id
+	@GeneratedValue(strategy = IDENTITY)
+	@Column(name = "user_account_id", unique = true, nullable = false)
+	public Integer getUserAccountId() {
+		return this.userAccountId;
+	}
+
+	public void setUserAccountId(Integer userAccountId) {
+		this.userAccountId = userAccountId;
+	}
+
+	@Column(name = "user_account_name", length = 64)
+	public String getUserAccountName() {
+		return this.userAccountName;
+	}
+
+	public void setUserAccountName(String userAccountName) {
+		this.userAccountName = userAccountName;
+	}
+
+	@Column(name = "user_account_id_psw", length = 64)
+	public String getUserAccountIdPsw() {
+		return this.userAccountIdPsw;
+	}
+
+	public void setUserAccountIdPsw(String userAccountIdPsw) {
+		this.userAccountIdPsw = userAccountIdPsw;
+	}
+
+	@Column(name = "user_account_nickname", length = 128)
+	public String getUserAccountNickname() {
+		return this.userAccountNickname;
+	}
+
+	public void setUserAccountNickname(String userAccountNickname) {
+		this.userAccountNickname = userAccountNickname;
+	}
+
+}

@@ -1,0 +1,78 @@
+package com.isoft.project.module.po;
+
+import java.sql.Timestamp;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import static javax.persistence.GenerationType.IDENTITY;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+/**
+ * UserStock entity. @author MyEclipse Persistence Tools
+ */
+@Entity
+@Table(name = "user_stock", catalog = "test")
+public class UserStock implements java.io.Serializable {
+
+	// Fields
+
+	private Integer userStockId;
+	private Integer userAccountId;
+	private Integer stockinfoId;
+	private Timestamp userStockDate;
+
+	// Constructors
+
+	/** default constructor */
+	public UserStock() {
+	}
+
+	/** full constructor */
+	public UserStock(Integer userAccountId, Integer stockinfoId,
+			Timestamp userStockDate) {
+		this.userAccountId = userAccountId;
+		this.stockinfoId = stockinfoId;
+		this.userStockDate = userStockDate;
+	}
+
+	// Property accessors
+	@Id
+	@GeneratedValue(strategy = IDENTITY)
+	@Column(name = "user_stock_id", unique = true, nullable = false)
+	public Integer getUserStockId() {
+		return this.userStockId;
+	}
+
+	public void setUserStockId(Integer userStockId) {
+		this.userStockId = userStockId;
+	}
+
+	@Column(name = "user_account_id")
+	public Integer getUserAccountId() {
+		return this.userAccountId;
+	}
+
+	public void setUserAccountId(Integer userAccountId) {
+		this.userAccountId = userAccountId;
+	}
+
+	@Column(name = "stockinfo_id")
+	public Integer getStockinfoId() {
+		return this.stockinfoId;
+	}
+
+	public void setStockinfoId(Integer stockinfoId) {
+		this.stockinfoId = stockinfoId;
+	}
+
+	@Column(name = "user_stock_date", length = 19)
+	public Timestamp getUserStockDate() {
+		return this.userStockDate;
+	}
+
+	public void setUserStockDate(Timestamp userStockDate) {
+		this.userStockDate = userStockDate;
+	}
+
+}

@@ -1,0 +1,21 @@
+package com.isoft.project.module.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.isoft.project.module.dao.StockdataDao;
+
+/**
+ * @ProjectName:MVCProject
+ * @Description: 
+ * @Copyright: Copyright (c) 2016
+ * @Company:天津市融创软通科技有限公司
+ * @author: 周楠
+ * @date 2016年4月19日 上午9:38:45
+ */
+@Service
+public class StockdataService {
+
+	@Autowired
+	private StockdataDao sddao;
+}

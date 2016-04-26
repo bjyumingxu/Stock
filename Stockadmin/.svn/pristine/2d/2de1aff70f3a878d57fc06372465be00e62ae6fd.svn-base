@@ -1,0 +1,82 @@
+/*
+Navicat MySQL Data Transfer
+
+Source Server         : localhost
+Source Server Version : 50515
+Source Host           : 127.0.0.1:3306
+Source Database       : test
+
+Target Server Type    : MYSQL
+Target Server Version : 50515
+File Encoding         : 65001
+
+Date: 2016-04-20 18:37:33
+*/
+
+SET FOREIGN_KEY_CHECKS=0;
+
+-- ----------------------------
+-- Table structure for stockdata
+-- ----------------------------
+DROP TABLE IF EXISTS `stockdata`;
+CREATE TABLE `stockdata` (
+  `stockdata_id` int(11) NOT NULL AUTO_INCREMENT,
+  `gid` varchar(32) DEFAULT NULL,
+  `increPer` double DEFAULT NULL,
+  `increase` double DEFAULT NULL,
+  `name` varchar(64) DEFAULT NULL,
+  `todayStartPri` double DEFAULT NULL,
+  `yestodEndPri` double DEFAULT NULL,
+  `nowPri` double DEFAULT NULL,
+  `todayMax` double DEFAULT NULL,
+  `todayMin` double DEFAULT NULL,
+  `competitivePri` double DEFAULT NULL,
+  `reservePri` double DEFAULT NULL,
+  `traNumber` bigint(20) DEFAULT NULL,
+  `traAmount` bigint(20) DEFAULT NULL,
+  `buyOne` bigint(20) DEFAULT NULL,
+  `buyOnePri` double DEFAULT NULL,
+  `buyTwo` bigint(20) DEFAULT NULL,
+  `buyTwoPri` double DEFAULT NULL,
+  `sellOne` bigint(20) DEFAULT NULL,
+  `sellOnePri` double DEFAULT NULL,
+  `sellTwo` bigint(20) DEFAULT NULL,
+  `sellTwoPri` double DEFAULT NULL,
+  `date` date DEFAULT NULL,
+  `time` time DEFAULT NULL,
+  PRIMARY KEY (`stockdata_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Table structure for stockindex
+-- ----------------------------
+DROP TABLE IF EXISTS `stockindex`;
+CREATE TABLE `stockindex` (
+  `stockindex_id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(64) DEFAULT NULL,
+  `dealNum` bigint(20) DEFAULT NULL,
+  `dealPri` bigint(20) DEFAULT NULL,
+  `highPri` double DEFAULT NULL,
+  `lowpri` double DEFAULT NULL,
+  `nowpri` double DEFAULT NULL,
+  `openPri` double DEFAULT NULL,
+  `yesPri` double DEFAULT NULL,
+  `increPer` double DEFAULT NULL,
+  `increase` double DEFAULT NULL,
+  `time` datetime DEFAULT NULL,
+  PRIMARY KEY (`stockindex_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Table structure for stockinfo
+-- ----------------------------
+DROP TABLE IF EXISTS `stockinfo`;
+CREATE TABLE `stockinfo` (
+  `stockinfo_id` int(11) NOT NULL AUTO_INCREMENT,
+  `stockinfo_symbol` varchar(64) DEFAULT NULL,
+  `stockinfo_name` varchar(64) DEFAULT NULL,
+  `stockinfo_amount` bigint(20) DEFAULT NULL,
+  `stockinfo_ticktime` datetime DEFAULT NULL,
+  `stockinfo_status` int(11) DEFAULT '0',
+  PRIMARY KEY (`stockinfo_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3066 DEFAULT CHARSET=utf8;

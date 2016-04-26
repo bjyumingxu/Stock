@@ -1,0 +1,99 @@
+
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<base href="<%=basePath%>">
+
+<title>查询结果</title>
+<meta http-equiv="pragma" content="no-cache">
+<meta http-equiv="cache-control" content="no-cache">
+<meta http-equiv="expires" content="0">
+<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+<meta http-equiv="description" content="This is my page">
+<link rel="stylesheet" href="css/style1.css" type="text/css" media="screen"/>
+<!--
+	<link rel="stylesheet" type="text/css" href="styles.css">
+	-->
+<script type="text/javascript" src="js/jquery-1.11.1.js"></script>
+<script type="text/javascript">
+	$(function getid(){
+ 	 var url = location.search;
+ 	 var Request = new Object();
+ 	 if(url.indexOf("?")!=-1){
+ 	 var str = url.substr(1);
+ 	 strs = str.split("&");
+ 	 for(var i =0;i<strs.length;i++){
+ 	 	Request[strs[i].split("=")[0]]=unescape(strs[i].split("=")[1]);
+ 	 }
+ 	 
+ 	 
+ 	 var cxkey=Request["cxkey"];
+ 	// alert(cxkey);
+ 	 $.ajax({
+			url : "Stockselect/cx.do",
+			type : "post",
+			dataType : "json",
+			data:{"gid":cxkey,
+			},
+			
+			success : function(data) {
+			
+				var table = $("#tb1");
+				var tem = "";
+				tem += "<thead>" + "<tr>" + "<th>股票标号</th>"
+						+ "<th>股票名称</th>" + "<th>交易量</th>"
+						+ "<th>涨幅</th>"
+						+ "<th>变化率</th>" + "<th>买入</th>"
+						+ "<th>卖出</th>" + "<th>居住地</th>"
+						+ "<th>开始</th>" + "</tr>" + "</thead>";
+				for (var i = 0; i < data.length; i++) {
+					//alert(data);
+					tem += " <tr> <td>" + data[i][1] + "</td>"
+							+ " <td>" + data[i][2] + "</td>" + " <td>"
+							+ data[i][3] + "</td>" + " <td>"
+							+ data[i][4] + "</td>" + " <td>"
+							+ data[i][5] + "</td>" + " <td>"
+							+ data[i][6] + "</td>" + " <td>"
+							+ data[i][7] + "</td>" + " <td>"
+							+ data[i][8] + "</td>" + " <td>"
+							+ data[i][9] + "</td>" + "</tr>";
+				}
+				table.empty();
+				table.append(tem);
+			},
+			error : function(msg) {
+				alert("Data error: " + msg);
+			}
+ 	 
+ 	 
+	
+})
+}})
+
+
+
+
+	
+</script>
+</head>
+
+<body bgcolor="#CC3333">
+<center>
+	<table id="tb1" class="table2">
+		<thead>
+			<tr>
+				<th>skSymbol</th>
+				<th>skName</th>
+				<th>skTrade</th>
+				<th>skPricechange</th>
+				<th>skChangepercent</th>
+				<th>skBuy</th>
+				<th>skSell</th>
+			</tr>
+		</thead>
+	</table>
+	</center>
+</body>
+
+</html>
